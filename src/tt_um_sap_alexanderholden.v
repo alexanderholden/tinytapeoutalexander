@@ -104,7 +104,7 @@ module tt_um_sap_alexanderholden(
     instruction_register IR(
         .LI(Li),
         .CLK(clk),
-        .clr(rst_n),
+        .CLR(rst_n),
         .EI(Ei),
 
         .ir_bus_in(bus),
@@ -135,7 +135,7 @@ module tt_um_sap_alexanderholden(
     programcounter PC(
         .C_P(Cp),
         .nCLK(clk),
-        .nclr(rst_n),
+        .nCLR(rst_n),
 
         .pc_bus_out(pc_bus_out)
     );
