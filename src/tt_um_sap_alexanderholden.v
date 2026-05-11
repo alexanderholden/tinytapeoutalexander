@@ -1,4 +1,4 @@
-module tt_um_sap_alexanderholden_1(
+module tt_um_sap_alexanderholden(
     input wire clk,
     input wire clr,
     input  wire [7:0] ui_in,    // Dedicated inputs - connected to the input switches
