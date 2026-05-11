@@ -10,11 +10,14 @@ You can also include images in this folder and reference them in the markdown. E
 ## How it works
 
 SAP-1 CPU
+It is an accumulator based CPU that is purposely made very simple (hence the name, Simple As Possible) 
+I would've liked to added input but I thought I wouldn't have enough space on my tile for the extra hardware necessary - turns out I did but I didn't have enough time to implement it!
+Therefore the internal storage is ROM so it does run a program but you cannot change it
 
 ## How to test
 
-SAP-1 CPU
+Enable the project and reset to ensure initial state, LEDs should light up like this: 00001110, which is 14 in decimal
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Eight LEDs on the output pins
