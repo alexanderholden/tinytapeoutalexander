@@ -1,7 +1,7 @@
 module instruction_register(
     input  wire        LI,           // load instruction
     input  wire        CLK,          // clock
-    input  wire        CLR,          // active low clear
+    input  wire        rst_n,          // active low clear
     input  wire        EI,           // enable output
     input  wire [7:0]  ir_bus_in,    // input bus
     output wire [3:0]  ir_addr_out,  // address output
@@ -11,8 +11,8 @@ module instruction_register(
     reg [7:0] ir_reg = 8'b0;
 
     // Load process with asynchronous clear
-    always @(posedge CLK or negedge CLR) begin
-        if (!CLR)
+    always @(posedge CLK or negedge rst_n) begin
+        if (!rst_n)
             ir_reg <= 8'b0;
         else if (LI)
             ir_reg <= ir_bus_in;

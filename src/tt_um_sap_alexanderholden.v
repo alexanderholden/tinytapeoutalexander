@@ -1,12 +1,6 @@
 module tt_um_sap_alexanderholden(
     input wire clk,
-    input wire rst_n,
-    input  wire [7:0] ui_in,    // Dedicated inputs - connected to the input switches
-    output wire [7:0] uo_out,   // Dedicated outputs - connected to the 7 segment display
-    input  wire [7:0] uio_in,   // IOs: Bidirectional Input path
-    output wire [7:0] uio_out,  // IOs: Bidirectional Output path
-    output wire [7:0] uio_oe,   // IOs: Bidirectional Enable path (active high: 0=input, 1=output)
-    input  wire       ena     // will go high when the design is enabled
+    input wire rst_n
 );
 
     wire Cp;
@@ -43,7 +37,7 @@ module tt_um_sap_alexanderholden(
 
     controller CTRL(
         .clk(clk),
-        .clr(rst_n),
+        .rst_n(rst_n),
         .inst_in(ir_opcode_out),
         .Cp(Cp),
         .Ep(Ep),
@@ -81,7 +75,7 @@ module tt_um_sap_alexanderholden(
         .LA(La),
         .CLK(clk),
         .EA(Ea),
-
+        .rst_n(rst_n),
         .acc_bus_in(bus),
 
         .acc_bus_out(acc_bus_out),
@@ -104,7 +98,7 @@ module tt_um_sap_alexanderholden(
     instruction_register IR(
         .LI(Li),
         .CLK(clk),
-        .CLR(rst_n),
+        .rst_n(rst_n),
         .EI(Ei),
 
         .ir_bus_in(bus),
@@ -116,7 +110,7 @@ module tt_um_sap_alexanderholden(
     mar MAR(
         .LM(Lm),
         .CLK(clk),
-
+        .rst_n(rst_n),
         .bus_in(bus[3:0]),
 
         .mar_addr_bus_out(mar_addr_bus_out)
@@ -126,6 +120,7 @@ module tt_um_sap_alexanderholden(
     outregister OUTREG(
         .LO(Lo),
         .CLK(clk),
+        .rst_n(rst_n),
 
         .out_bus_in(bus),
 
@@ -135,7 +130,7 @@ module tt_um_sap_alexanderholden(
     programcounter PC(
         .C_P(Cp),
         .nCLK(clk),
-        .nCLR(rst_n),
+        .rst_n(rst_n),
 
         .pc_bus_out(pc_bus_out)
     );
@@ -151,14 +146,9 @@ module tt_um_sap_alexanderholden(
     b_register BREG(
         .LB(Lb),
         .CLK(clk),
-
+        .rst_n(rst_n),
         .b_bus_in(bus),
 
         .b_add_sum_in(b_add_sum_in)
     );
-
-    assign uo_out = out_reg_bus_out;
-
-    assign uio_out = 8'b0;
-    assign uio_oe  = 8'b0;
 endmodule

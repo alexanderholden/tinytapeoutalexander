@@ -1,6 +1,6 @@
 module controller(
     input  wire       clk,
-    input  wire       clr,
+    input  wire       rst_n,
     input  wire [3:0] inst_in,
 
     output reg Cp,
@@ -32,9 +32,9 @@ module controller(
   reg [11:0] control_signal;
 
   // State register
-  always @(posedge clk or negedge clr)
+  always @(posedge clk or negedge rst_n)
   begin
-    if (!clr)
+    if (!rst_n)
       pr_state <= IDLE;
     else
       pr_state <= nx_state;
